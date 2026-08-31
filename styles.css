@@ -1,5 +1,6 @@
 /*=============== GOOGLE FONTS - Insert link for typography ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap");
 
 /*=============== VARIABLES CSS ===============*/
 :root {
@@ -62,6 +63,13 @@ button {
 body {
   background-color: var(--body-color);
   color: var(--title-color);
+}
+
+/*=============== RTL / ARABIC ===============*/
+[dir="rtl"] body,
+[dir="rtl"] input,
+[dir="rtl"] button {
+  font-family: "Cairo", sans-serif;
 }
 
 input,
@@ -141,6 +149,39 @@ img {
   transition: background-color 0.3s ease;
 }
 
+/*============ LANGUAGE SWITCH ============*/
+.lang-switch {
+  position: fixed;
+  top: 1rem;
+  inset-inline-end: 1rem;
+  z-index: var(--z-fixed);
+  display: flex;
+  column-gap: 0.25rem;
+  border: 1px solid var(--black-color);
+  border-radius: 4rem;
+  padding: 0.2rem;
+  background-color: var(--body-color);
+  box-shadow: 0 2px 0 var(--black-color);
+}
+
+.lang-switch__btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 4rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  color: var(--title-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.lang-switch__btn:hover {
+  background-color: var(--first-color-alt);
+}
+
+.lang-switch__btn.main-active {
+  background-color: var(--first-color);
+}
+
 /*============ PROFILE ============*/
 .profile__conatainer {
   padding-top: 1.5rem;
@@ -200,7 +241,7 @@ img {
 /*============ SKILLS ============*/
 .skills__list {
   list-style: initial;
-  padding-left: 2rem;
+  padding-inline-start: 2rem;
 }
 /*============ TOOLS ============*/
 .tools__list {
@@ -244,7 +285,7 @@ img {
 
 .experience__list {
   list-style: initial;
-  padding-left: 2rem;
+  padding-inline-start: 2rem;
 }
 /*============ EDUCATION ============*/
 .education__list {
@@ -261,11 +302,63 @@ img {
   font-size: var(--normal-font-size);
   font-weight: var(--font-semi-bold);
 }
+/*============ LIGHTBOX ============*/
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background-color: hsla(0, 0%, 0%, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 2rem;
+}
+
+.lightbox.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 0.5rem;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.show .lightbox__img {
+  transform: scale(1);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.5rem;
+  inset-inline-end: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.75rem;
+  color: #fff;
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.lightbox__close:hover {
+  background-color: hsla(0, 0%, 100%, 0.2);
+}
+
 /*============ PROJECTS ============*/
 .projects__link {
   display: block;
   overflow: hidden;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .projects__img {
@@ -328,7 +421,7 @@ img {
   }
 
   .main__left {
-    border-right: 3px dashed var(--black-color); 
+    border-inline-end: 3px dashed var(--black-color); 
   }
 
   .section {
@@ -382,7 +475,7 @@ img {
   }
 
   .experience__list {
-    padding-left: 10.5rem;
+    padding-inline-start: 10.5rem;
   }
 
   .education__item {
